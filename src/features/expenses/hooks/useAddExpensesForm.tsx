@@ -18,7 +18,6 @@ const useAddExpensesForm = () => {
     categoryIcon: "",
     currency: "EGP",
   });
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
