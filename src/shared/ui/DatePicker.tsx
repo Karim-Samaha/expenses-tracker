@@ -9,7 +9,7 @@ interface DatePickerProps {
   label?: string;
   className?: string;
   inputClassName?: string;
-  value: Date;
+  value?: Date | null;
   onChange: (e: any) => void;
   error?: FieldError;
 }
@@ -40,7 +40,7 @@ const DatePickerInput: React.FC<DatePickerProps> = ({
           selected={value}
           onChange={onChange}
           className={`w-full w-full  py-3 rounded-lg text-gray-700 focus:outline-none ${inputClassName}`}
-          placeholderText="02/01/24"
+          placeholderText="Enter receipt date"
           {...inputProps}
         />
         <CalendarDays

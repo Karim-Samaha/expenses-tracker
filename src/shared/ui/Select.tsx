@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 const Select = ({
@@ -21,10 +21,10 @@ const Select = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-white border border-gray-300 px-3 py-1 rounded-md text-left shadow-sm flex gap-x-2 items-center"
+        className="w-full bg-white border border-gray-300 px-3 py-1 rounded-md text-left shadow-sm flex justify-between items-center min-w-[128px]"
       >
         <span> {selected || options[0]}</span>
-        <ChevronDown size={15} />
+        {isOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
       </button>
 
       {isOpen && (

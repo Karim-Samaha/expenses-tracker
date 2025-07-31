@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { addExpenseSchema, type ExpensValue } from "../types/expense.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,6 +6,7 @@ import { addExpense } from "../services/AddExpenses";
 import Expenses from "../types/Expenses";
 import useFormStatus from "@shared/hooks/useFormStatus";
 import { Category } from "@features/category/types/Category";
+import getUsdAmount from "../services/GetUsdAmount";
 
 const useAddExpensesForm = () => {
   const { formStatus, handleFormSuccess, handleFormCrash } = useFormStatus();
@@ -61,11 +62,24 @@ const useAddExpensesForm = () => {
       setValue("date", formValues.date, { shouldValidate: true });
     if (formValues.file)
       setValue("file", formValues.file, { shouldValidate: true });
-
     const isValid = await trigger();
-    if (isValid) addExpense(formValues, handleFormSuccess, handleFormCrash);
-    else console.log("Validation failed");
+    if (isValid) {
+      try {
+        let amountInUsd = await getUsdAmount(
+          formValues.currency,
+          parseInt(formValues.amount)
+        );
+        addExpense(
+          { ...formValues, ...amountInUsd },
+          handleFormSuccess,
+          handleFormCrash
+        );
+      } catch (err) {
+        handleFormCrash();
+      }
+    } else console.log("Validation failed");
   };
+
   return {
     formValues,
     handleChange,

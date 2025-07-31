@@ -34,7 +34,7 @@ const AddExpensesForm = () => {
           />
           <InputField
             label="Amount"
-            placeholder="$50,000"
+            placeholder="EGP amount"
             inputClassName="bg-gray-100 rounded-lg p-3 text-gray-500 focus:outline-none border-none h-[48px] focus:none"
             {...register("amount")}
             value={formValues.amount}
@@ -42,7 +42,7 @@ const AddExpensesForm = () => {
             error={errors.amount}
           />
           <DatePickerInput
-            value={formValues.date || new Date()}
+            value={formValues.date}
             onChange={handleDateChange}
             label="Date"
             error={errors.date}
