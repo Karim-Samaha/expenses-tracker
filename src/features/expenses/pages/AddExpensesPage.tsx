@@ -12,7 +12,7 @@ export default function AddExpensesPage() {
     <div className="min-h-screen font-sans max-w-sm mx-auto p-4">
       <div className="text-lg font-semibold text-center mb-6 mt-4 relative">
         <Link
-          to={prevPage || "/dashboard"}
+          to={prevPage || "/"}
           className="absolute top-[3px] left-[0]"
         >
           <ArrowLeft strokeWidth={1.25} />
