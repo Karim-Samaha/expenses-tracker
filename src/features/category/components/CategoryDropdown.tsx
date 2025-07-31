@@ -6,7 +6,7 @@ import type { FieldError } from "react-hook-form";
 interface CategoryDropdownProps {
   categories: Category[];
   selectedCategory: string;
-  handleCategoryChange: (name: string) => void;
+  handleCategoryChange: (category: Category) => void;
   error?: FieldError;
 }
 const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
@@ -18,9 +18,8 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-
-  const handleSelect = (value: string) => {
-    handleCategoryChange(value);
+  const handleSelect = (category: Category) => {
+    handleCategoryChange(category);
     setIsOpen(false);
   };
   const toggleDropdown = () => {
@@ -50,7 +49,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
             {categories.map((cat) => (
               <li
                 key={cat.label}
-                onClick={() => handleSelect(cat.label)}
+                onClick={() => handleSelect(cat)}
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700 flex gap-x-3"
               >
                 <span>{cat.icon}</span>

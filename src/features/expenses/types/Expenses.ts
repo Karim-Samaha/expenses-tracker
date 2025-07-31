@@ -3,4 +3,6 @@ export default interface Expenses {
   amount: string;
   date?: Date | null;
   file?: File | null;
+  categoryIcon?: string;
+  currency: string;
 }

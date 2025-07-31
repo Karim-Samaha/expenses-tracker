@@ -1,12 +1,27 @@
+import useExpensesData from "../hooks/useExpensesData";
+import ExpensesItem from "./ExpensesItem";
+import usePaginationOnScroll from '@shared/hooks/usePaginationOnScroll'
 export default function ListingExpenses() {
+  const { data, loadMore } = useExpensesData();
+  const { observerRef } = usePaginationOnScroll({loadMore})
   return (
     <div className="mt-5">
       <div className="flex justify-between items-center mb-1 p-4">
         <h3 className="text-lg font-semibold">Recent Expenses</h3>
         <button className="text-black text-sm font-medium">see all</button>
       </div>
-
       <ul className="space-y-3 px-4">
+        {data?.map((item, i) => (
+          <ExpensesItem data={item} i={i} />
+        ))}
+      </ul>
+      <div ref={observerRef} className="h-8"></div>
+    </div>
+  );
+}
+
+{
+  /* <ul className="space-y-3 px-4">
         {[
           { icon: "🛒", title: "Groceries", amount: "- $100" },
           { icon: "🎮", title: "Entertainment", amount: "- $100" },
@@ -27,7 +42,9 @@ export default function ListingExpenses() {
             <p className="font-semibold">{item.amount}</p>
           </li>
         ))}
-      </ul>
-    </div>
-  );
+      </ul> */
 }
+function useScrollPagination(arg0: { loadMore: () => void; }): { observerRef: any; } {
+  throw new Error("Function not implemented.");
+}
+

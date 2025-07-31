@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { addExpense } from "../services/AddExpenses";
 import Expenses from "../types/Expenses";
 import useFormStatus from "@shared/hooks/useFormStatus";
+import { Category } from "@features/category/types/Category";
 
 const useAddExpensesForm = () => {
   const { formStatus, handleFormSuccess, handleFormCrash } = useFormStatus();
@@ -13,8 +14,9 @@ const useAddExpensesForm = () => {
     amount: "",
     date: null,
     file: null,
+    categoryIcon: "",
+    currency: "EGP",
   });
-  console.log({formStatus})
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -24,10 +26,11 @@ const useAddExpensesForm = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleCategoryChange = (ctgName: string) => {
+  const handleCategoryChange = (category: Category) => {
     setFormValues((prev) => ({
       ...prev,
-      category: ctgName,
+      category: category.label,
+      categoryIcon: category.icon,
     }));
   };
 

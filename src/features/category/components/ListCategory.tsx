@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 interface ListCategoryProps {
   categories: Category[];
   selectedCategory: string;
-  handleCategoryChange: (name: string) => void;
+  handleCategoryChange: (category: Category) => void;
 }
 const ListCategory: React.FC<ListCategoryProps> = ({
   categories,
@@ -20,7 +20,7 @@ const ListCategory: React.FC<ListCategoryProps> = ({
           <div
             key={cat.label}
             className="flex flex-col items-center"
-            onClick={() => handleCategoryChange(cat.label)}
+            onClick={() => handleCategoryChange(cat)}
           >
             <div
               className={`w-12 h-12 flex items-center justify-center rounded-full ${
