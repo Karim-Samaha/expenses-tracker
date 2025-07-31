@@ -8,7 +8,7 @@ import useQueryString from "@shared/hooks/useQueryString";
 export default function AddExpensesPage() {
   const {value: prevPage } = useQueryString("source")
   return (
-    <div className="min-h-screen font-sans max-w-sm mx-auto p-4">
+    <div className="min-h-screen font-sans max-w-[880px] mx-auto p-4">
       <div className="text-lg font-semibold text-center mb-6 mt-4 relative">
         <Link
           to={prevPage || "/"}

@@ -10,7 +10,7 @@ export default function DashboardPage() {
 
   return (
     <FooterBarLayout>
-      <div className="min-h-screen bg-gray-50 font-sans max-w-sm mx-auto">
+      <div className="min-h-screen bg-gray-50 font-sans max-w-[880px] mx-auto">
         <div className="bg-[#1D55F3] p-4">
           <div className="flex justify-between items-start py-4">
             <FadeIn>

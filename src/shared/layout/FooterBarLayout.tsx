@@ -14,7 +14,7 @@ export default function FooterBarLayout({ children }: { children: ReactNode }) {
   return (
     <div className="pb-[70px] bg-[#FAFCFC]">
       {children}
-      <div className="fixed bottom-0 left-0 right-0 bg-white inset-shadow-sm p-2 flex justify-around items-center max-w-sm mx-auto h-[60px]">
+      <div className="fixed bottom-0 left-0 right-0 bg-white inset-shadow-sm p-2 flex justify-around items-center max-w-[880px] mx-auto h-[60px]">
         <House className="text-xl text-[#1D55F3] " />
         <Signal className="text-xl text-gray-500" />{" "}
         <Link
