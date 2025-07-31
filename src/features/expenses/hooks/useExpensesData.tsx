@@ -3,11 +3,12 @@ import { getExpenses } from "../services/GetExpenses";
 import Expenses from "../types/Expenses";
 import { filterByDate } from "../utils/filterExpensesByDate";
 import useQueryString from "@shared/hooks/useQueryString";
+import Default_Filter from "@features/dashboard/types/DefaultFilterEnum";
 
 const PAGE_SIZE = 10;
 const useExpensesData = () => {
   const { value } = useQueryString("filter");
-  const filterOption = value || "MONTH";
+  const filterOption = value || Default_Filter.VAL;
   const [data, setData] = useState<{
     data: Expenses[];
     render: Expenses[];
