@@ -4,9 +4,14 @@ import Expenses from "../types/Expenses";
 
 const PAGE_SIZE = 10;
 const useExpensesData = () => {
-  const [data, setData] = useState<{ data: Expenses[]; render: Expenses[] }>({
+  const [data, setData] = useState<{
+    data: Expenses[];
+    render: Expenses[];
+    loaded: boolean;
+  }>({
     data: [],
     render: [],
+    loaded: false,
   });
   const [page, setPage] = useState(1);
 
@@ -16,6 +21,7 @@ const useExpensesData = () => {
       ...prev,
       data: storeData,
       render: storeData.slice(0, PAGE_SIZE),
+      loaded: true,
     }));
   };
   const loadMore = () => {
@@ -35,7 +41,11 @@ const useExpensesData = () => {
     }));
   }, [page]);
 
-  return { data: data.render, loadMore };
+  return {
+    data: data.render,
+    loadMore,
+    isEmpty: data.loaded && data.data.length === 0,
+  };
 };
 
 export default useExpensesData;
