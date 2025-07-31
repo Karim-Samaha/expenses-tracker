@@ -1,4 +1,5 @@
 import Expenses from "../types/Expenses";
+import handleDateString from "../utils/handleDateString";
 
 interface ExpensesItemProps {
   data: Expenses;
@@ -7,7 +8,7 @@ interface ExpensesItemProps {
 const ExpensesItem: React.FC<ExpensesItemProps> = ({ data, i }) => {
   return (
     <li
-      key={data.date ? new Date(data.date).getDate() : i}
+      key={i}
       className="bg-white rounded-xl px-4 py-2 shadow flex items-center "
     >
       <div className="text-2xl mr-4 rounded-[50%] bg-[#E7E4F5] flex items-center justify-center p-[3px] ">
@@ -19,7 +20,7 @@ const ExpensesItem: React.FC<ExpensesItemProps> = ({ data, i }) => {
       </div>
       <div> 
         <p className="font-semibold text-right">{data.amount} $</p>
-        <p className="text-sm text-gray-400">Today 12:00 PM</p>
+        <p className="text-sm text-gray-400">{data?.date && handleDateString(data.date)}</p>
       </div>
     </li>
   );

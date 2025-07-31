@@ -1,9 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getExpenses } from "../services/GetExpenses";
 import Expenses from "../types/Expenses";
+import { filterByDate } from "../utils/filterExpensesByDate";
+import useQueryString from "@shared/hooks/useQueryString";
 
 const PAGE_SIZE = 10;
 const useExpensesData = () => {
+  const { value } = useQueryString("filter");
+  const filterOption = value || "MONTH";
   const [data, setData] = useState<{
     data: Expenses[];
     render: Expenses[];
@@ -17,10 +21,11 @@ const useExpensesData = () => {
 
   const getData = () => {
     const storeData = getExpenses();
+    const filtered = filterByDate(storeData, filterOption);
     setData((prev) => ({
       ...prev,
-      data: storeData,
-      render: storeData.slice(0, PAGE_SIZE),
+      data: filtered,
+      render: filtered.slice(0, PAGE_SIZE),
       loaded: true,
     }));
   };
@@ -31,7 +36,7 @@ const useExpensesData = () => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [filterOption]);
   useEffect(() => {
     if (page === 1) return;
     const nextChunk = data.data.slice(0, PAGE_SIZE * page);

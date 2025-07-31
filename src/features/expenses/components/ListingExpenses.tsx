@@ -4,7 +4,11 @@ import ExpensesItem from "./ExpensesItem";
 import usePaginationOnScroll from "@shared/hooks/usePaginationOnScroll";
 import { PlusCircle } from "lucide-react";
 
-export default function ListingExpenses() {
+export default function ListingExpenses({
+  filterOption,
+}: {
+  filterOption?: string;
+}) {
   const { data, isEmpty, loadMore } = useExpensesData();
   const { observerRef } = usePaginationOnScroll({ loadMore });
   return (

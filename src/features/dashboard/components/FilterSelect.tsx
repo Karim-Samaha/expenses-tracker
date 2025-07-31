@@ -1,29 +1,16 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import useMainFilter from "../hooks/useMainFilter";
 
-const Select = ({
-  options,
-  onSelect,
-}: {
-  options: string[];
-  onSelect: (value: string) => void;
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
-
-  const handleSelect = (value: string) => {
-    setSelected(value);
-    onSelect(value);
-    setIsOpen(false);
-  };
-
+const FilterSelect = ({}: {}) => {
+  const { options, isOpen, selected, toggleSelectDropdown, handleSelect } =
+    useMainFilter();
   return (
     <div className="relative">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleSelectDropdown}
         className="w-full bg-white border border-gray-300 px-3 py-1 rounded-md text-left shadow-sm flex justify-between items-center min-w-[128px]"
       >
-        <span> {selected || options[0]}</span>
+        <span> {selected?.label}</span>
         {isOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
       </button>
 
@@ -35,7 +22,7 @@ const Select = ({
               onClick={() => handleSelect(option)}
               className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
             >
-              {option}
+              {option.label}
             </li>
           ))}
         </ul>
@@ -44,4 +31,4 @@ const Select = ({
   );
 };
 
-export default Select;
+export default FilterSelect;

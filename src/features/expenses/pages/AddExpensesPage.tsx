@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import AddExpensesForm from "../components/AddExpensesForm";
 import ModalComponet from "@shared/ui/Modal";
 import { ReactNode } from "react";
+import useQueryString from "@shared/hooks/useQueryString";
 
 export default function AddExpensesPage() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const prevPage = queryParams.get("source");
+  const {value: prevPage } = useQueryString("source")
   return (
     <div className="min-h-screen font-sans max-w-sm mx-auto p-4">
       <div className="text-lg font-semibold text-center mb-6 mt-4 relative">

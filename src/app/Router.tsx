@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-import DashboardPage from "@features/dashboard/ui/DashboardPage";
+import DashboardPage from "@features/dashboard/pages/DashboardPage";
 import AddExpensesPage from "@features/expenses/pages/AddExpensesPage";
 import LoginPage from "@features/login/pages/LoginPage";
 import AuthProtectedLayout from "@shared/layout/AuthProtectedLayout";
