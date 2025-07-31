@@ -2,20 +2,20 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { addExpenseSchema, type ExpensValue } from "../types/expense.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { addExpense } from "../services/AddExpenses";
+import Expenses from "../types/Expenses";
+import useFormStatus from "@shared/hooks/useFormStatus";
 
-type FormValues = {
-  category: string;
-  amount: string;
-  date: Date | null;
-  file: File | null;
-};
 const useAddExpensesForm = () => {
-  const [formValues, setFormValues] = useState<FormValues>({
+  const { formStatus, handleFormSuccess, handleFormCrash } = useFormStatus();
+  const [formValues, setFormValues] = useState<Expenses>({
     category: "",
     amount: "",
     date: null,
     file: null,
   });
+  console.log({formStatus})
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -45,15 +45,24 @@ const useAddExpensesForm = () => {
   };
   const {
     register,
-    handleSubmit,
+    trigger,
+    setValue,
     formState: { errors },
   } = useForm<ExpensValue>({
     resolver: zodResolver(addExpenseSchema),
   });
-  const handleAddExpense = handleSubmit(() => {
+  const handleAddExpense = async () => {
+    setValue("category", formValues.category, { shouldValidate: true });
+    setValue("amount", formValues.amount, { shouldValidate: true });
+    if (formValues.date)
+      setValue("date", formValues.date, { shouldValidate: true });
+    if (formValues.file)
+      setValue("file", formValues.file, { shouldValidate: true });
 
-    return;
-  });
+    const isValid = await trigger();
+    if (isValid) addExpense(formValues, handleFormSuccess, handleFormCrash);
+    else console.log("Validation failed");
+  };
   return {
     formValues,
     handleChange,
@@ -63,6 +72,7 @@ const useAddExpensesForm = () => {
     register,
     errors,
     handleAddExpense,
+    formStatus,
   };
 };
 

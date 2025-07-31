@@ -1,14 +1,14 @@
-import { ArrowLeft, Camera } from "lucide-react";
+import { Camera, CheckCircle } from "lucide-react";
 import CategoryDropdown from "@features/category/components/CategoryDropdown";
 import ListCategory from "@features/category/components/ListCategory";
 import useCategorySelection from "@features/category/hook/useCategorySelection";
-import { Link, useLocation } from "react-router-dom";
 import InputField from "@shared/ui/Input";
 import DatePickerInput from "@shared/ui/DatePicker";
 import UploadFile from "@shared/ui/UploadFile";
 import useAddExpensesForm from "../hooks/useAddExpensesForm";
-
-export default function AddExpensesPage() {
+import ModalComponet from "@shared/ui/Modal";
+import { Link } from "react-router-dom";
+const AddExpensesForm = () => {
   const { categories } = useCategorySelection();
   const {
     formValues,
@@ -19,21 +19,10 @@ export default function AddExpensesPage() {
     register,
     errors,
     handleAddExpense,
+    formStatus,
   } = useAddExpensesForm();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const prevPage = queryParams.get("source");
   return (
-    <div className="min-h-screen font-sans max-w-sm mx-auto p-4">
-      <div className="text-lg font-semibold text-center mb-6 mt-4 relative">
-        <Link
-          to={prevPage || "/dashboard"}
-          className="absolute top-[3px] left-[0]"
-        >
-          <ArrowLeft strokeWidth={1.25} />
-        </Link>
-        <p>Add Expense</p>
-      </div>
+    <>
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="space-y-4">
           <CategoryDropdown
@@ -81,6 +70,35 @@ export default function AddExpensesPage() {
           Save
         </button>
       </form>
-    </div>
+      <ModalComponet
+        isOpen={formStatus.success}
+        isCrashModal={formStatus.crash}
+        content={() => (
+          <div className="flex flex-col items-center text-center space-y-4">
+            <CheckCircle size={48} className="text-green-500" />
+            <h2 className="text-xl font-semibold">
+              Expenses Added Successfully!
+            </h2>
+            <div className="flex flex-col gap-3 mt-4 w-full">
+              <Link
+                to={"/dashboard"}
+                onClick={() => null}
+                className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-gray-800"
+              >
+                Back Home
+              </Link>
+              <button
+                onClick={() => window.location.reload()}
+                className="border border-[gray] text-black py-2 px-4 rounded hover:bg-gray-100"
+              >
+                Add Another One
+              </button>
+            </div>
+          </div>
+        )}
+      />
+    </>
   );
-}
+};
+
+export default AddExpensesForm;

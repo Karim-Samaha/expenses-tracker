@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Category } from "../types/Category";
 import type { FieldError } from "react-hook-form";
 
@@ -17,6 +17,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
   ...inputProps
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+
 
   const handleSelect = (value: string) => {
     handleCategoryChange(value);
@@ -58,7 +59,12 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
             ))}
           </ul>
         )}
-        <input type="hidden" {...inputProps} />
+        <input
+          readOnly
+          type="hidden"
+          value={selectedCategory}
+          {...inputProps}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp, ChevronUp, Ellipsis } from "lucide-react";
-import FooterBarLayout from "../../../shared/layout/FooterBarLayout";
-import Select from "../../../shared/ui/Select";
+import FooterBarLayout from "@shared/layout/FooterBarLayout";
+import Select from "@shared/ui/Select";
 import ListingExpenses from "../../expenses/components/ListingExpenses";
 
 export default function DashboardPage() {
