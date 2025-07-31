@@ -5,4 +5,6 @@ export default interface Expenses {
   file?: File | null;
   categoryIcon?: string;
   currency: string;
+  orignalAmount?: string;
+  originalCurrency?: string;
 }

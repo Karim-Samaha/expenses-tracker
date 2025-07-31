@@ -69,7 +69,12 @@ const useAddExpensesForm = () => {
           parseInt(formValues.amount)
         );
         addExpense(
-          { ...formValues, ...amountInUsd },
+          {
+            ...formValues,
+            ...amountInUsd,
+            orignalAmount: formValues.amount,
+            originalCurrency: formValues.currency,
+          },
           handleFormSuccess,
           handleFormCrash
         );
