@@ -8,6 +8,7 @@ import UploadFile from "@shared/ui/UploadFile";
 import useAddExpensesForm from "../hooks/useAddExpensesForm";
 import ModalComponet from "@shared/ui/Modal";
 import { Link } from "react-router-dom";
+import FadeIn from "@shared/ui/FadeIn";
 const AddExpensesForm = () => {
   const { categories } = useCategorySelection();
   const {
@@ -24,46 +25,48 @@ const AddExpensesForm = () => {
   return (
     <>
       <form onSubmit={(e) => e.preventDefault()}>
-        <div className="space-y-4">
-          <CategoryDropdown
-            categories={categories}
-            selectedCategory={formValues.category}
-            handleCategoryChange={handleCategoryFormState}
-            error={errors.category}
-            {...register("category")}
-          />
-          <InputField
-            label="Amount"
-            placeholder="Amount"
-            inputClassName="bg-gray-100 rounded-lg p-3 text-gray-500 focus:outline-none border-none h-[48px] focus:none"
-            {...register("amount")}
-            value={formValues.amount}
-            onChange={handleChange}
-            error={errors.amount}
-            selectOptions={[
-              { label: "EGP", value: "EGP" },
-              { label: "EUR", value: "EUR" },
-              { label: "SAR", value: "SAR" },
-            ]}
-            selectValue={formValues.currency}
-            onSelectChange={handleChange}
-          />
-          <DatePickerInput
-            value={formValues.date}
-            onChange={handleDateChange}
-            label="Date"
-            error={errors.date}
-          />
-          <UploadFile
-            label="Attach Receipt"
-            placeHolder="Upload image"
-            inputClassName="bg-gray-100 rounded-lg p-3 text-gray-500 focus:outline-none border-none h-[48px] focus:none"
-            icon={<Camera className="absolute right-3 top-3 text-black" />}
-            handleSelect={handleFileChange}
-            error={errors.file}
-          />
-        </div>
+        <FadeIn>
+          <div className="space-y-4">
+            <CategoryDropdown
+              categories={categories}
+              selectedCategory={formValues.category}
+              handleCategoryChange={handleCategoryFormState}
+              error={errors.category}
+              {...register("category")}
+            />
 
+            <InputField
+              label="Amount"
+              placeholder="Amount"
+              inputClassName="bg-gray-100 rounded-lg p-3 text-gray-500 focus:outline-none border-none h-[48px] focus:none"
+              {...register("amount")}
+              value={formValues.amount}
+              onChange={handleChange}
+              error={errors.amount}
+              selectOptions={[
+                { label: "EGP", value: "EGP" },
+                { label: "EUR", value: "EUR" },
+                { label: "SAR", value: "SAR" },
+              ]}
+              selectValue={formValues.currency}
+              onSelectChange={handleChange}
+            />
+            <DatePickerInput
+              value={formValues.date}
+              onChange={handleDateChange}
+              label="Date"
+              error={errors.date}
+            />
+            <UploadFile
+              label="Attach Receipt"
+              placeHolder="Upload image"
+              inputClassName="bg-gray-100 rounded-lg p-3 text-gray-500 focus:outline-none border-none h-[48px] focus:none"
+              icon={<Camera className="absolute right-3 top-3 text-black" />}
+              handleSelect={handleFileChange}
+              error={errors.file}
+            />
+          </div>
+        </FadeIn>
         <ListCategory
           categories={categories}
           selectedCategory={formValues.category}

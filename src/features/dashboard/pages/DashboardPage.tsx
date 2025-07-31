@@ -4,7 +4,7 @@ import { useAuth } from "@shared/context/AuthContext";
 import Avatar from "@shared/ui/Avatar";
 import UserInsights from "../components/UserInsights";
 import FilterSelect from "../components/FilterSelect";
-
+import FadeIn from "@shared/ui/FadeIn";
 export default function DashboardPage() {
   const { user } = useAuth();
 
@@ -13,23 +13,25 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-gray-50 font-sans max-w-sm mx-auto">
         <div className="bg-[#1D55F3] p-4">
           <div className="flex justify-between items-start py-4">
-            <div className="flex items-center gap-x-2">
-              <Avatar user={user?.email || ""} />
-              <div>
-                <p className="text-sm text-white">Good Morning</p>
-                <h2 className="text-lg font-semibold text-white">
-                  {user?.email.split("@")[0]}
-                </h2>
+            <FadeIn>
+              <div className="flex items-center gap-x-2">
+                <Avatar user={user?.email || ""} />
+                <div>
+                  <p className="text-sm text-white">Good Morning</p>
+                  <h2 className="text-lg font-semibold text-white">
+                    {user?.email.split("@")[0]}
+                  </h2>
+                </div>
               </div>
-            </div>
+            </FadeIn>
             <div>
               <FilterSelect />
             </div>
           </div>
-
-          <UserInsights />
+          <FadeIn>
+            <UserInsights />
+          </FadeIn>
         </div>
-
         <ListingExpenses />
       </div>
     </FooterBarLayout>
