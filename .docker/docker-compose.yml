@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  expenses-tracker:
+    container_name: expenses-tracker
+    restart: always
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile
+    ports:
+      - "7421:80"
+    networks:
+      - expenses-tracker
+
+networks:
+  expenses-tracker:
+    name: expenses-tracker
