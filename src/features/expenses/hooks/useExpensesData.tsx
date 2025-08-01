@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getExpenses } from "../services/GetExpenses";
 import Expenses from "../types/Expenses";
 import { filterByDate } from "../utils/filterExpensesByDate";
@@ -46,11 +46,17 @@ const useExpensesData = () => {
       render: nextChunk,
     }));
   }, [page]);
+  const headerText = useMemo(() => {
+    if (["WEEK", "MONTH"].includes(filterOption)) return "Recent Expenses";
+    if (filterOption === "YEAR") return "This Year Expenses";
+    else return "Expenses";
+  }, [filterOption]);
 
   return {
     data: data.render,
     loadMore,
     isEmpty: data.loaded && data.data.length === 0,
+    headerText,
   };
 };
 

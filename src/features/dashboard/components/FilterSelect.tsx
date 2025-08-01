@@ -10,7 +10,7 @@ const FilterSelect = ({}: {}) => {
         onClick={toggleSelectDropdown}
         className="w-full bg-white border border-gray-300 px-3 py-1 rounded-md text-left shadow-sm flex justify-between items-center min-w-[128px]"
       >
-        <span> {selected?.label}</span>
+        <span className="font-medium opacity-[.8]"> {selected?.label}</span>
         {isOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
       </button>
 

@@ -20,7 +20,7 @@ const ExpensesItem: React.FC<ExpensesItemProps> = ({ data }) => {
         </div>
         <div>
           <p className="font-semibold text-right">{data.amount} $</p>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400 text-right">
             {data?.date && handleDateString(data.date)}
           </p>
         </div>

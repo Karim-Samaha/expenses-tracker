@@ -31,9 +31,8 @@ const UserInsights = () => {
             </span>
             <p className="text-sm opacity-75">Expenses</p>
           </div>
-          <p className="text-lg font-semibold">
+          <p className="text-lg font-semibold pl-[4px]">
             ${formatMoney(totalExpenses)}
-            {/* $1,884.00 */}
           </p>
         </div>
       </div>

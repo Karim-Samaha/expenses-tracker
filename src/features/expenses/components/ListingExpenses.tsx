@@ -7,18 +7,20 @@ import FadeIn from "@shared/ui/FadeIn";
 import downloadCsv from "../utils/DownloadCsv";
 
 export default function ListingExpenses() {
-  const { data, isEmpty, loadMore } = useExpensesData();
+  const { data, isEmpty, loadMore, headerText } = useExpensesData();
   const { observerRef } = usePaginationOnScroll({ loadMore });
   return (
     <div className="mt-5">
       <div className="flex justify-between items-center mb-1 p-4">
-        <h3 className="text-lg font-semibold">Recent Expenses</h3>
-        <button
-          className="text-blue-600 text-sm font-medium flex items-center gap-x-1 cursor-pointer"
-          onClick={() => downloadCsv(data)}
-        >
-          <Download size={14} /> <span>csv</span>
-        </button>
+        <h3 className="text-lg font-semibold">{headerText}</h3>
+        {!isEmpty && (
+          <button
+            className="text-blue-600 text-sm font-medium flex items-center gap-x-1 cursor-pointer"
+            onClick={() => downloadCsv(data)}
+          >
+            <Download size={14} /> <span>csv</span>
+          </button>
+        )}
       </div>
       {isEmpty ? (
         <FadeIn>

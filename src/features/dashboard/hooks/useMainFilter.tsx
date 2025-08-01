@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import FilterOption from "../types/FilterOption";
-const options = [
-  { label: "Last 7 Days", value: "WEEK" },
-  { label: "This month", value: "MONTH", default: true },
-  { label: "This year", value: "YEAR" },
-  { label: "All", value: "ALL" },
-];
+import {FilterOption, options} from "../types/FilterOption";
+
 const useMainFilter = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

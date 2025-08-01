@@ -8,8 +8,6 @@ const useInsights = () => {
     totalIncome: 10840,
     totalBalance: 2548,
   });
-  const [totalExpenses, setTotalExpenses] = useState(0);
-
   const { value: filter } = useQueryString("filter");
   const handleTotalExpenses = (filter: string | null) => {
     let totalAmount = GetTotalExpensesAmount(filter);

@@ -39,10 +39,10 @@ const ListCategory: React.FC<ListCategoryProps> = ({
             </div>
           ))}
           <div className="flex flex-col items-center">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-500">
-              <Plus size={15} />
+            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 border-1 border-blue-600">
+              <Plus size={15} className="text-blue-600"/>
             </div>
-            <span className="text-[.7rem] text-center mt-1">Add Category</span>
+            <span className="text-[.7rem] font-semibold text-center mt-1">Add Category</span>
           </div>
         </div>
       {/* </FadeIn> */}

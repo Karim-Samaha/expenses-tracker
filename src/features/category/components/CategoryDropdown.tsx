@@ -32,7 +32,9 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
       <div className="relative">
         <button
           type="button"
-          className="w-full bg-gray-100 text-gray-700 rounded-lg p-3 pr-10 text-left focus:outline-none"
+          className={`w-full bg-gray-100  rounded-lg p-3 pr-10 text-left focus:outline-none ${
+            selectedCategory ? "text-black" : "text-gray-400"
+          }`}
           onClick={toggleDropdown}
         >
           {selectedCategory || "Select a category"}

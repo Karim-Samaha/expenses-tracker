@@ -38,7 +38,7 @@ const AddExpensesForm = () => {
             <InputField
               label="Amount"
               placeholder="Amount"
-              inputClassName="bg-gray-100 rounded-lg p-3 text-gray-500 focus:outline-none border-none h-[48px] focus:none"
+              inputClassName="bg-gray-100 rounded-lg p-3 text-black focus:outline-none border-none h-[48px] focus:none placeholder-gray-400"
               {...register("amount")}
               value={formValues.amount}
               onChange={handleChange}
@@ -75,6 +75,7 @@ const AddExpensesForm = () => {
 
         <button
           className="w-full mt-6 bg-blue-600 text-white py-3 rounded-[12px] font-semibold text-md"
+          type="submit"
           onClick={handleAddExpense}
         >
           Save

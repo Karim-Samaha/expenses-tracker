@@ -35,9 +35,12 @@ const useAddExpensesForm = () => {
   };
 
   const handleDateChange = (date: Date) => {
+    const normalizedUTCDate = new Date(
+      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+    );
     setFormValues((prev) => ({
       ...prev,
-      date: date,
+      date: normalizedUTCDate,
     }));
   };
   const handleFileChange = (file: File | null) => {

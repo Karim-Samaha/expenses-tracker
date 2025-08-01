@@ -33,7 +33,7 @@ const InputField: React.FC<InputFieldProps> = ({
           <select
             value={selectValue}
             onChange={onSelectChange}
-            className="h-[48px] rounded-lg px-3 bg-gray-100 text-gray-500 focus:outline-none border-none"
+            className="h-[48px] rounded-lg px-3 bg-gray-100 text-black focus:outline-none border-none"
             name="currency"
           >
             {selectOptions.map((option) => (
@@ -49,10 +49,6 @@ const InputField: React.FC<InputFieldProps> = ({
           className={`flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none ${inputClassName}`}
         />
       </div>
-      {/* <input
-        {...inputProps}
-        className={`w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none ${inputClassName}`}
-      /> */}
       {icon && icon}
       {error && <p className="text-[red] mt-[3px]">{error.message}</p>}
     </div>

@@ -5,9 +5,9 @@ export default function SuspenseLayout({ children }: { children: ReactNode }) {
   return (
     <Suspense
       fallback={
-        <div className="mt-[35vh]">
+        <section className="min-h-screen flex items-center justify-center">
           <Spinner className="border-blue-600" />
-        </div>
+        </section>
       }
     >
       {children}

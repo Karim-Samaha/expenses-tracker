@@ -39,7 +39,7 @@ const DatePickerInput: React.FC<DatePickerProps> = ({
           ref={datePickerRef}
           selected={value}
           onChange={onChange}
-          className={`w-full w-full  py-3 rounded-lg text-gray-700 focus:outline-none ${inputClassName}`}
+          className={`w-full w-full  py-3 rounded-lg text-black focus:outline-none ${inputClassName} placeholder-gray-400`}
           placeholderText="Enter receipt date"
           {...inputProps}
         />

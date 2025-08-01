@@ -11,7 +11,7 @@ const LoginForm = () => {
         <InputField
           label="Email"
           placeholder="Enter your Name"
-          inputClassName="focus:ring-2 focus:ring-blue-400 bg-gray-100 border-none"
+          inputClassName="focus:ring-2 focus:ring-blue-400 bg-gray-100 border-none placeholder-gray-400"
           value={formValues.email}
           {...register("email")}
           onChange={handleChange}
@@ -19,12 +19,12 @@ const LoginForm = () => {
         />
       </FadeIn>
       <FadeIn>
-        <div className="relative">
+        <div>
           <InputField
             label="Password"
-            type="Password"
+            type="password"
             placeholder="••••••••"
-            inputClassName="focus:ring-2 focus:ring-blue-400 bg-gray-100 border-none"
+            inputClassName="focus:ring-2 focus:ring-blue-400 bg-gray-100 border-none placeholder-gray-400"
             value={formValues.password}
             {...register("password")}
             onChange={handleChange}
@@ -38,7 +38,10 @@ const LoginForm = () => {
         </div>
       </FadeIn>
       <FadeIn>
-        <button className="w-full bg-blue-600 text-white py-2 rounded-md font-medium hover:bg-blue-700 transition">
+        <button
+          className="w-full bg-blue-600 text-white py-2 rounded-md font-medium hover:bg-blue-700 transition"
+          type="submit"
+        >
           Login
         </button>
       </FadeIn>

@@ -1,3 +1,4 @@
+import minimizeString from "@shared/utils/minimizeString";
 import { icons } from "lucide-react";
 import React, { useRef, useState, type ReactNode } from "react";
 import type { FieldError } from "react-hook-form";
@@ -44,7 +45,11 @@ const UploadFile: React.FC<UploadFileProps> = ({
         className={`relative flex items-center w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none ${inputClassName}`}
         onClick={handleClick}
       >
-        <span>{fileName || placeHolder || "Upload File"}</span>
+        <span className={`${fileName ? "text-black" : "text-gray-400"}`}>
+          {fileName
+            ? minimizeString(fileName, 30)
+            : placeHolder || "Upload File"}
+        </span>
         {icon && icon}
       </div>
       {error && <p className="text-[red] mt-[3px]">{error.message}</p>}
