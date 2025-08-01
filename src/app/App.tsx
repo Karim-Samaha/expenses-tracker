@@ -1,10 +1,13 @@
 import Router from "./Router";
 import { AuthProvider } from "@shared/context/AuthContext";
+import ErrorBoundary from "@shared/layout/ErrorBoundryLayout";
 function App() {
   return (
-    <AuthProvider>
-      <Router />
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router />
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
