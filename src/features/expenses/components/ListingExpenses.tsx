@@ -23,7 +23,7 @@ export default function ListingExpenses() {
       {isEmpty ? (
         <FadeIn>
           <div className="flex flex-col items-center justify-center py-12 text-center text-gray-500">
-            <p className="mb-2 text-base font-medium">No recent expenses yet</p>
+            <p className="mb-2 text-base font-medium">No expenses yet</p>
             <Link
               to="/add-expenses"
               className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:underline"
