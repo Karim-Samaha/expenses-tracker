@@ -2,21 +2,23 @@ import { Link } from "react-router-dom";
 import useExpensesData from "../hooks/useExpensesData";
 import ExpensesItem from "./ExpensesItem";
 import usePaginationOnScroll from "@shared/hooks/usePaginationOnScroll";
-import { PlusCircle } from "lucide-react";
+import { Download, PlusCircle } from "lucide-react";
 import FadeIn from "@shared/ui/FadeIn";
+import downloadCsv from "../utils/DownloadCsv";
 
-export default function ListingExpenses({
-  filterOption,
-}: {
-  filterOption?: string;
-}) {
+export default function ListingExpenses() {
   const { data, isEmpty, loadMore } = useExpensesData();
   const { observerRef } = usePaginationOnScroll({ loadMore });
   return (
     <div className="mt-5">
       <div className="flex justify-between items-center mb-1 p-4">
         <h3 className="text-lg font-semibold">Recent Expenses</h3>
-        <button className="text-black text-sm font-medium">see all</button>
+        <button
+          className="text-blue-600 text-sm font-medium flex items-center gap-x-1 cursor-pointer"
+          onClick={() => downloadCsv(data)}
+        >
+          <Download size={14} /> <span>csv</span>
+        </button>
       </div>
       {isEmpty ? (
         <FadeIn>

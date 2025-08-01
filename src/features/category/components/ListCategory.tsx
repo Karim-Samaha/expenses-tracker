@@ -16,7 +16,7 @@ const ListCategory: React.FC<ListCategoryProps> = ({
   return (
     <div className="mt-6">
       <h3 className="text-md font-semibold mb-2">Categories</h3>
-      <FadeIn>
+      {/* <FadeIn> */}
         <div className="grid grid-cols-4 gap-4">
           {categories.map((cat) => (
             <div
@@ -45,7 +45,7 @@ const ListCategory: React.FC<ListCategoryProps> = ({
             <span className="text-[.7rem] text-center mt-1">Add Category</span>
           </div>
         </div>
-      </FadeIn>
+      {/* </FadeIn> */}
     </div>
   );
 };
