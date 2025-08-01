@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import FilterOption from "../types/FilterOption";
 const options = [
@@ -25,7 +25,19 @@ const useMainFilter = () => {
     params.set("filter", option.value);
     navigate({ search: params.toString() }, { replace: true });
   };
+  // Sync with URL param if it changes
+  useEffect(() => {
+    const filterParam = searchParams.get("filter");
+    if (filterParam) {
+      const matchedOption = options.find(
+        (option) => option.value === filterParam
+      );
+      if (matchedOption && matchedOption.value !== selected?.value) {
+        setSelected(matchedOption);
+      }
+    }
+  }, [searchParams]);
 
-  return { options, isOpen, selected,toggleSelectDropdown, handleSelect };
+  return { options, isOpen, selected, toggleSelectDropdown, handleSelect };
 };
 export default useMainFilter;
